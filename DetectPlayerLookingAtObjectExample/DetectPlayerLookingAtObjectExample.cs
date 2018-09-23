@@ -52,6 +52,16 @@ namespace DetectPlayerLookingAtObjectExample
             if (hasHit)
             {
                 ModConsole.Print("has detected: " + hitInfo.transform.gameObject.name); // Prints the game object's name to the console when the player is looking at it. Expecting 'Truck Engine(xxxxx)'.
+                PlayMakerGlobals.Instance.Variables.FindFsmBool("GUIuse").Value = true; // Enables the hand-symbol.
+                PlayMakerGlobals.Instance.Variables.FindFsmString("GUIinteraction").Value = "testing 123"; // Setting the text.
+            }
+            else
+            {
+                if (PlayMakerGlobals.Instance.Variables.FindFsmBool("GUIuse").Value)
+                {
+                    PlayMakerGlobals.Instance.Variables.FindFsmBool("GUIuse").Value = false; // Disables the hand-symbol.
+                    PlayMakerGlobals.Instance.Variables.FindFsmString("GUIinteraction").Value = ""; // Resetting text.
+                }
             }
         }
     }
